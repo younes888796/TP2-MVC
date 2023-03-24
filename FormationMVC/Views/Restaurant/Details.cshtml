@@ -1,0 +1,29 @@
+﻿@model FormationMVC.Models.DTO.Restaurant
+@{
+    string message = (string)TempData["message"];
+}
+
+<div class="card mx-auto my-4" style="max-width: 800px;">
+    <div class="card-body">
+        <h2 class="card-title mb-4">@Model.Name</h2>
+        <h6 class="card-subtitle mb-2 text-muted">@Model.PhoneNumber</h6>
+        <p class="card-text">@Model.Address</p>
+        <hr>
+
+        <h3>Cuisines:</h3>
+        <div class="">
+            @foreach (var cuisin in Model.Cuisines)
+            {
+                <div class="m-4 p-lg-3 shadow-lg ">
+                    @Html.Partial("./Components/_CuisinDetails", cuisin)
+                </div>
+            }
+        </div>
+        
+            
+        
+
+        <hr>
+        <a href="@Url.Action("Index", "Restaurant")" class="btn btn-primary">Back to List</a>
+    </div>
+</div>

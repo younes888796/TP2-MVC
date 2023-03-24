@@ -1,0 +1,71 @@
+﻿@using FormationMVC.Models.DTO;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+*@
+@model List< FormationMVC.Models.DTO.Restaurant>
+
+@{
+
+    string HelloMessage = ViewBag.message;
+
+}
+<div class="container">
+   
+    <h1>@HelloMessage</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">PhoneNumber</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var restaurant in Model)
+            {
+                <tr>
+                    <th scope="row">@restaurant.Id</th>
+                    <td>@restaurant.Name</td>
+                    <td>@restaurant.Address</td>
+                    <td>@restaurant.PhoneNumber</td>
+                    <td>
+                        <a type="button" asp-controller="Restaurant" asp-action="Details" asp-route-id="@restaurant.Id" class="btn btn-sm btn-secondary">Details</a>
+                        <a type="button" asp-controller="Restaurant" asp-action="Edit" asp-route-id="@restaurant.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <button type="button"  class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Delete
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure ??
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a type="button" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@restaurant.Id">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+
+
+    <my-custom-tag>This  s from Tag Helper</my-custom-tag>
+</div>
